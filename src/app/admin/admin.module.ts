@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { QuillModule } from 'ngx-quill';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AuthService } from './services/auth.service';
@@ -11,7 +12,7 @@ import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.co
 import { CreatePageComponent } from './pages/create-page/create-page.component';
 import { EditPageComponent } from './pages/edit-page/edit-page.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthGuard } from "./services/auth.guard";
+import { AuthGuard } from './services/auth.guard';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AuthGuard } from "./services/auth.guard";
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    QuillModule.forRoot()
   ],
   providers: [AuthService, AuthGuard],
   exports: [
