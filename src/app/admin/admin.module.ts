@@ -11,6 +11,7 @@ import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.co
 import { CreatePageComponent } from './pages/create-page/create-page.component';
 import { EditPageComponent } from './pages/edit-page/edit-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from "./services/auth.guard";
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   exports: [
     AdminRoutingModule
   ]

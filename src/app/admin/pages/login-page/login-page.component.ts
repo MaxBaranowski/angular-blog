@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
-import { catchError } from "rxjs/operators";
-import { throwError } from "rxjs";
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
@@ -14,11 +14,24 @@ export class LoginPageComponent implements OnInit {
 
   form: FormGroup;
   formSubmitted: boolean;
+  errorMessage: string;
 
-  constructor(public auth: AuthService, private router: Router) {
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
   }
 
   ngOnInit() {
+
+    this.route.queryParams.subscribe((params: Params) => {
+      // console.log(params)
+      if (params.login && params.login === 'false') {
+        this.errorMessage = 'Please log in again';
+      }
+    });
+
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.email, Validators.required]),
       password: new FormControl(null, [
@@ -43,12 +56,12 @@ export class LoginPageComponent implements OnInit {
     // console.log(user);
 
     this.auth.logIn(user)
-      .pipe(
-        catchError(err => {
-          this.formSubmitted = false;
-          return throwError(err);
-        })
-      ).subscribe(res => {
+        .pipe(
+          catchError(err => {
+            this.formSubmitted = false;
+            return throwError(err);
+          })
+        ).subscribe(res => {
       this.form.reset();
       this.router.navigate(['/admin', 'dashboard']);
     });
