@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { PostPageComponent } from './post-page/post-page.component';
+import { MainLayoutComponent } from './blog/layout/main-layout.component';
+import { HomePageComponent } from './blog/pages/home-page/home-page.component';
+import { PostPageComponent } from './blog/pages/post-page/post-page.component';
 
 
 const routes: Routes = [
