@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../../services/post.service';
+import { catchError, tap } from "rxjs/operators";
+import { throwError } from "rxjs";
 
 @Component({
   selector: 'app-create-page',
@@ -9,6 +11,7 @@ import { PostService } from '../../../services/post.service';
 })
 export class CreatePageComponent implements OnInit {
   form: FormGroup;
+  postCreated: boolean;
 
   constructor(private postService: PostService) { }
 
@@ -32,11 +35,26 @@ export class CreatePageComponent implements OnInit {
       date: new Date(),
     };
 
-    console.log(post)
+    // console.log(post)
 
-    this.postService.create(post).subscribe(res => console.log(res))
+    this.postService.create(post).pipe(
+      tap(data => {
+        // console.log(1, data);
+        this.showHidePostMessage();
+        this.form.reset();
+      }),
+      catchError(err => {
+        return throwError(err);
+      })
+    ).subscribe(res => console.log(res));
 
-    // this.form.reset();
+  }
+
+  private showHidePostMessage(time = 3500) {
+    this.postCreated = true;
+    return setTimeout(() => {
+      this.postCreated = false;
+    }, time);
   }
 
 }

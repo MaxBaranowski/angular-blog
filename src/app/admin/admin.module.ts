@@ -14,6 +14,7 @@ import { EditPageComponent } from './pages/edit-page/edit-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './services/auth.guard';
 import { PostService } from '../services/post.service';
+import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -32,7 +33,12 @@ import { PostService } from '../services/post.service';
     HttpClientModule,
     QuillModule.forRoot()
   ],
-  providers: [AuthService, AuthGuard, PostService],
+  providers: [
+    AuthService,
+    AuthGuard,
+    AuthInterceptorProvider,
+    PostService
+  ],
   exports: [
     AdminRoutingModule
   ]
