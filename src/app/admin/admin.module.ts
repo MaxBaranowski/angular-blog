@@ -13,6 +13,7 @@ import { CreatePageComponent } from './pages/create-page/create-page.component';
 import { EditPageComponent } from './pages/edit-page/edit-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './services/auth.guard';
+import { PostService } from '../services/post.service';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { AuthGuard } from './services/auth.guard';
     HttpClientModule,
     QuillModule.forRoot()
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, PostService],
   exports: [
     AdminRoutingModule
   ]
