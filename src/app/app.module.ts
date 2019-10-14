@@ -8,6 +8,7 @@ import { MainLayoutComponent } from './blog/layout/main-layout.component';
 import { HomePageComponent } from './blog/pages/home-page/home-page.component';
 import { PostPageComponent } from './blog/pages/post-page/post-page.component';
 import { PostComponent } from './blog/layout/components/post/post.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PostComponent } from './blog/layout/components/post/post.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
