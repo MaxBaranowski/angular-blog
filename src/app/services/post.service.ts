@@ -34,4 +34,17 @@ export class PostService {
     // text: "<p>trololo</p>"
     // title: "first post"
   }
+
+  getById(postId: string): Observable<PostInterface> {
+    return this.http.get<PostInterface>(`${environment.FIREBASE_DB_URL}/posts/${postId}.json?print=pretty`)
+               .pipe(
+                 map((response: PostInterface) => {
+                     return {
+                       ...response,
+                       id: postId
+                     };
+                   }
+                 )
+               );
+  }
 }

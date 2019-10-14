@@ -9,6 +9,7 @@ import { HomePageComponent } from './blog/pages/home-page/home-page.component';
 import { PostPageComponent } from './blog/pages/post-page/post-page.component';
 import { PostComponent } from './blog/layout/components/post/post.component';
 import { HttpClientModule } from '@angular/common/http';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    QuillModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
